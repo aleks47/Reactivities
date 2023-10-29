@@ -3,6 +3,7 @@ import { Activity } from "../../../app/models/activity";
 import { SyntheticEvent, useState } from "react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
 
 export default observer(function ActivityList() {
   const { activityStore } = useStore();
@@ -33,11 +34,12 @@ export default observer(function ActivityList() {
               </Item.Description>
               <Item.Extra>
                 <Button
+                  as={Link}
+                  to={`/activities/${activity.id}`}
                   name={activity.id}
                   floated="right"
                   content="View"
                   color="blue"
-                  onClick={() => activityStore.selectActivity(activity.id)}
                 />
                 <Button
                   name={activity.id}
