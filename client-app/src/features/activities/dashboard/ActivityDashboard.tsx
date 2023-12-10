@@ -12,7 +12,7 @@ export default observer(function ActivityDashboard() {
   const { activityStore } = useStore();
   const { loadActivities, activityRegistry, setPagingParams, pagination } =
     activityStore;
-  const [loadingNext, setLoadingNext] = useState();
+  const [loadingNext, setLoadingNext] = useState(false);
 
   function handleGetNext() {
     setLoadingNext(true);

@@ -34,7 +34,7 @@ namespace Application.Profiles
                 {
                     case "past":
                         userActivities = await _context.ActivityAttendees
-                            .Where(a => a.AppUser.UserName == request.Username && a.Activity.Date < DateTime.Now)
+                            .Where(a => a.AppUser.UserName == request.Username && a.Activity.Date < DateTime.UtcNow)
                             .OrderBy(a => a.Activity.Date)
                             .ProjectTo<UserActivityDto>(_mapper.ConfigurationProvider)
                             .ToListAsync();
@@ -48,7 +48,7 @@ namespace Application.Profiles
                         break;
                     default:
                         userActivities = await _context.ActivityAttendees
-                            .Where(a => a.AppUser.UserName == request.Username && a.Activity.Date >= DateTime.Now)
+                            .Where(a => a.AppUser.UserName == request.Username && a.Activity.Date >= DateTime.UtcNow)
                             .OrderBy(a => a.Activity.Date)
                             .ProjectTo<UserActivityDto>(_mapper.ConfigurationProvider)
                             .ToListAsync();

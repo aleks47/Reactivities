@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for reactivities-web on 2023-12-10T23:57:31+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "reactivities-web"
+primary_region = "otp"
+
+[build]
+  image = "alecsciocan/reactivities:latest"
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  Cloudinary__CloudName="dydxbmdbl"
+  Cloudinary__ApiKey="514582568319953"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
